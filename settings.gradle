@@ -1,2 +1,2 @@
-include ':app', ':android-jars'
+include ':app', ':android-jars', ':android-so'
 rootProject.name='cronet-android'

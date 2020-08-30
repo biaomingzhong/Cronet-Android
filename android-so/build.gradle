@@ -1,0 +1,99 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+android {
+  compileSdkVersion rootProject.ext.compileSdkVersion
+  buildToolsVersion rootProject.ext.buildToolsVersion
+
+  defaultConfig {
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    versionCode 1
+    versionName rootProject.ext.publishVersion
+
+    consumerProguardFiles 'consumer-rules.pro'
+  }
+
+  compileOptions {
+    sourceCompatibility rootProject.ext.sourceCompatibility
+    targetCompatibility rootProject.ext.sourceCompatibility
+  }
+
+  buildTypes {
+    buildTypes {
+      debug {
+        matchingFallbacks = 'release'
+      }
+    }
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  libraryVariants.all {
+    it.generateBuildConfig.enabled = false
+  }
+}
+
+version = rootProject.ext.publishVersion
+apply from: "$rootDir/gradle/artifacts.gradle"
+
+group = rootProject.ext.publishGroupId
+install {
+  repositories.mavenInstaller.pom.project {
+    name 'so'
+    description POM_DESCRIPTION
+    packaging POM_PACKAGING
+    url POM_URL
+
+    licenses {
+      license {
+        name POM_LICENCE_NAME
+        url POM_LICENCE_URL
+        distribution POM_LICENCE_DIST
+      }
+    }
+
+    scm {
+      url POM_SCM_URL
+      connection POM_SCM_CONNECTION
+      developerConnection POM_SCM_DEV_CONNECTION
+    }
+
+    developers {
+      developer {
+        id 'biaomingzhong'
+        name 'Biaoming Zhong'
+        email 'biaomingzhong@gmail.com'
+      }
+    }
+  }
+}
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+// Configure gradle-bintray-plugin (for publishing releases)
+bintray {
+  configurations = ['archives']
+
+  publish = true
+
+  pkg {
+    repo = POM_NAME
+    name = 'android-cronet-so'
+    licenses = ['Apache-2.0']
+    labels = ['cronet', 'android']
+    websiteUrl = POM_URL
+    issueTrackerUrl = POM_URL + '/issues'
+    vcsUrl = POM_SCM_URL
+  }
+}
+
+if (project.hasProperty('bintrayUser') && project.hasProperty('bintrayKey')) {
+  bintray.user = project.bintrayUser
+  bintray.key = project.bintrayKey
+}

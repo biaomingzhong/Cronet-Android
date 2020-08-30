@@ -76,6 +76,23 @@ dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
 
+// Configure gradle-bintray-plugin (for publishing releases)
+bintray {
+  configurations = ['archives']
+
+  publish = true
+
+  pkg {
+    repo = POM_NAME
+    name = 'android-cronet-jars'
+    licenses = ['Apache-2.0']
+    labels = ['cronet', 'android']
+    websiteUrl = POM_URL
+    issueTrackerUrl = POM_URL + '/issues'
+    vcsUrl = POM_SCM_URL
+  }
+}
+
 if (project.hasProperty('bintrayUser') && project.hasProperty('bintrayKey')) {
   bintray.user = project.bintrayUser
   bintray.key = project.bintrayKey
