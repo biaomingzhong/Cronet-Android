@@ -45,6 +45,9 @@ if (project.plugins.hasPlugin('com.android.library')) {
 
       classifier = "${classifierPrefix}sources"
       from variant.javaCompiler.source
+      from {
+        fileTree(dir: 'source-libs', include: ['*.jar']).findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+      }
     }
 
     if (variant.name == 'release') {
