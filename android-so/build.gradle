@@ -84,7 +84,7 @@ bintray {
 
   pkg {
     repo = POM_NAME
-    name = 'android-cronet-so'
+    name = 'cronet-android-so'
     licenses = ['Apache-2.0']
     labels = ['cronet', 'android']
     websiteUrl = POM_URL
