@@ -27,5 +27,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
 
-    api project(':android-jars')
+    implementation "io.github.biaomingzhong.cronet-android:android-jars:${rootProject.ext.publishVersion}"
+    implementation "io.github.biaomingzhong.cronet-android:android-so:${rootProject.ext.publishVersion}"
 }

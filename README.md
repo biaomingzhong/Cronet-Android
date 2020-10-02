@@ -14,7 +14,7 @@ allprojects {
 
 dependencies {
     // xxx is latest version name from https://bintray.com/biaomingzhong/Cronet-Android/cronet-android-jars/_latestVersion
-    implementation 'io.biaomingzhong.cronet-android:cronet-android-jars:xxx'
-    implementation 'io.biaomingzhong.cronet-android:cronet-android-jars:xxx'
+    implementation 'io.github.biaomingzhong.cronet-android:android-jars:xxx'
+    implementation 'io.github.biaomingzhong.cronet-android:android-so:xxx'
 }
 ```
