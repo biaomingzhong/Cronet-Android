@@ -37,6 +37,6 @@ ext {
 
     sourceCompatibility = JavaVersion.VERSION_1_8
 
-    publishVersion = '85.0.4183.101'
+    publishVersion = '85.0.4183.127'
     publishGroupId = 'io.github.biaomingzhong.cronet-android'
 }
