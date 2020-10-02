@@ -12,7 +12,7 @@ android {
     versionCode 1
     versionName rootProject.ext.publishVersion
 
-    consumerProguardFiles 'consumer-rules.pro'
+    consumerProguardFiles 'cronet_impl_common_proguard.cfg', 'cronet_impl_native_proguard.cfg'
   }
 
   compileOptions {
