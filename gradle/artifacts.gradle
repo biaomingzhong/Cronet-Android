@@ -5,7 +5,7 @@ if (project.plugins.hasPlugin('com.android.library')) {
       description "Generates Javadoc for $variant.name"
 
       // Source files from the variant
-      source = variant.javaCompiler.source
+      source = fileTree(dir: 'source-libs', include: ['*.jar']).findAll { it.name.endsWith('jar') }.collect { zipTree(it) }.plus(variant.javaCompiler.source)
 
       // Classpath from the variant + android.jar
       String androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
